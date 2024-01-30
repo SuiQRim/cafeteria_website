@@ -11,6 +11,7 @@ const FoodCatalogPage:FC = () => {
     
     const nonEditValue = 0;
     const [editableFoodId, setEditableFoodId] = useState<number>(nonEditValue)
+    const [editableCatalogId, setEditableCatalogId] = useState<number>(nonEditValue)
 
     const getFoodCatalogs = () => {
         Api.get('api/FoodCatalogs/collection?withFood=true').then((response) => {
@@ -26,9 +27,13 @@ const FoodCatalogPage:FC = () => {
         setEditableFoodId(id)
     }
 
+    const editCatalog = (id: number) => {
+        setEditableCatalogId(id)
+    }
+
     const saveFood = (food: IFood) => {
         setEditableFoodId(nonEditValue);
-        Api.put(`http://localhost:5145/api/Foods/edit/${food.id}`,
+        Api.put(`api/Foods/edit/${food.id}`,
             {
                 name : food.name,
                 kcal : food.kcal,
@@ -38,10 +43,26 @@ const FoodCatalogPage:FC = () => {
         
     }
 
+    const saveCatalog = (catalog: IFoodCatalog) => {
+        setEditableCatalogId(nonEditValue);
+        Api.put(`api/FoodCatalogs/${catalog.id}`,
+            {
+                name : catalog.name
+            }).then(() => getFoodCatalogs())
+        
+    }
+
     return (
-        <div style={{display : 'flex', flexDirection : 'column', gap:'20px'}}>
-            {foodCatalogs && foodCatalogs.map((item) => 
-                <FoodCatalog editFood={editFood} saveFood={saveFood} editableFoodId={editableFoodId} key={item.id} catalog={item}/>)}
+        <div>
+            <div style={{display : 'flex', flexDirection : 'column', gap:'20px', width: '720px'}}>
+                {foodCatalogs && foodCatalogs.map((item) => 
+                    <FoodCatalog key={item.id} catalog={item}
+                        editCatalog={() => editCatalog(item.id)} saveCatalog={saveCatalog} 
+                        editFood={editFood} saveFood={saveFood} 
+                        editableFoodId={editableFoodId} isEdit={editableCatalogId === item.id}/>
+                    )}
+
+            </div>
         </div>
     );
 }

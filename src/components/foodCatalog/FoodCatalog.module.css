@@ -1,24 +1,37 @@
 .catalog {
 }
 
+
+.nameWrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    font-size: 28px;
+    font-weight: bold;
+}
 .name {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
     font-size: 44px;
     font-weight: bolder;
 }
 
+.input {
+    width: 100%;
+    font-size: 44px;
+}
+
+.foodsWrapper {
+    display: flex;
+    justify-content: center;
+}
 .foods {
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.nameWrapper {
-    display: flex;
-    gap: 14px;
-    font-size: 28px;
-    font-weight: bold;
-    
 }
 
 .name {
