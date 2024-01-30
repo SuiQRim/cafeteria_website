@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react'
 import IFood from '../../models/IFood'
 import style from './Food.module.css'
 import MiniButton from '../../ui/buttons/MiniButton'
+import Input from '../../ui/inputs/Input'
 
 type Props = {
     food : IFood,
@@ -52,7 +53,7 @@ const EditFood:FC<Props> = ({food, save}) => {
             <div className={style.nameWrapper}>
         
                 <div className={style.name}>
-                    <input
+                    <Input
                         className={style.input}
                         value={editableFood.name} 
                         onChange={editName}/>
@@ -65,7 +66,7 @@ const EditFood:FC<Props> = ({food, save}) => {
                 <div className={style.detailsWrapper}>
                     <div>
                         <div className={style.detailLabel}>Ккал (100 гр)</div>
-                        <input className={style.input}
+                        <Input className={style.input}
                             onKeyPress={readNumbersOnly}
                             value={editableFood.kcal === 0 ? '' : editableFood.kcal} 
                             onChange={editkcal}/>
@@ -74,7 +75,7 @@ const EditFood:FC<Props> = ({food, save}) => {
 
                 <div className={style.priceWrapper}> 
                     <div className={style.detailLabel}>Цена</div>
-                    <input className={style.input}
+                    <Input className={style.input}
                         onKeyPress={readNumbersOnly}
                         value={editableFood.price === 0 ? '' : editableFood.price} 
                         onChange={editPrice}/>                

@@ -24,21 +24,6 @@
     align-self: flex-end;
 }
 
-.input {    
-    outline: none;
-    transition: 0.25s;
-    background: none;
-    border: solid 2px var(--main-color);
-    border-width: 0px 0px 2px 0px;
-}
-
-.input:focus {
-    border: none;
-    border: solid  var(--main-color);
-    background: var(--blackout-color);
-    border-width: 0px 0px 2px 0px;
-}
-
 .name .input {
     width: 100%;
     font-size: 28px;
