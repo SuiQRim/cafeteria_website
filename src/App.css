@@ -1,0 +1,26 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+
+:root {
+    --main-color: #db9b4d;
+    --additional-color: #db9b4d;
+    --blackout-color: rgba(0, 0, 0, 0.075);
+}
+
+.App {
+    background: rgb(255, 249, 244);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.AppWrapper {
+    width: 74%;
+    display: flex;
+    justify-content: center;
+}

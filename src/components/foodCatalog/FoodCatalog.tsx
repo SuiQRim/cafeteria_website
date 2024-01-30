@@ -14,7 +14,7 @@ const FoodCatalog:FC<Props> = ({catalog}) => {
                 <span>{catalog.name}</span>
             </div>
             <div className={style.foods}>
-                {catalog.foods.map((item, index) => <Food key={index} food={item}></Food>)}
+                {catalog.foods.map((item) => <Food key={item.id} food={item}/>)}
             </div>
         </div>
     )

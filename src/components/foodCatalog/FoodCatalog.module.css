@@ -1,12 +1,13 @@
 .catalog {
-
 }
 
 .name {
- font-size: 28px;
+    font-size: 44px;
+    font-weight: bolder;
 }
 
 .foods {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;

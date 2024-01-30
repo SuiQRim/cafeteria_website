@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Login from './components/Login';
-import Header from './components/header/Header';
 import IUser from './models/IUser';
 import Api from './api/Api';
 import FoodCatalogPage from './pages/foodCatalogPage/FoodCatalogPage';
@@ -24,7 +22,10 @@ function App() {
 
     return (
         <div className="App">
-            <FoodCatalogPage/>
+            <div className='AppWrapper'>
+                <FoodCatalogPage/>
+            </div>
+            
         </div>
     );
 }

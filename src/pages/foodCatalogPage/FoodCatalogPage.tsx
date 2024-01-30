@@ -13,12 +13,10 @@ const FoodCatalogPage:FC = () => {
             setFoodCatalogs(response.data)
         })
     },[])
+
     return (
         <div style={{display : 'flex', flexDirection : 'column', gap:'20px'}}>
-            {foodCatalogs && foodCatalogs.map((item, index) => 
-            <div>
-                <FoodCatalog  key={index} catalog={item}/>
-                </div>)}
+            {foodCatalogs && foodCatalogs.map((item) => <FoodCatalog  key={item.id} catalog={item}/>)}
         </div>
     );
 }
