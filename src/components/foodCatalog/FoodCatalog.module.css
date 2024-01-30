@@ -12,3 +12,20 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.nameWrapper {
+    display: flex;
+    gap: 14px;
+    font-size: 28px;
+    font-weight: bold;
+    
+}
+
+.name {
+    display: flex;
+    align-self: flex-end;
+}
+
+.edit {
+    align-self: center;
+}

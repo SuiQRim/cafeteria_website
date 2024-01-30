@@ -7,6 +7,9 @@
 
 :root {
     --main-color: #db9b4d;
+    --main-color-hover: #ecb168;
+    --main-color-active: #c2873f;
+    
     --additional-color: #db9b4d;
     --blackout-color: rgba(0, 0, 0, 0.075);
 }

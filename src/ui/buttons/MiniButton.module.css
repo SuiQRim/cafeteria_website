@@ -1,0 +1,23 @@
+.button {
+    transition: 0.25s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    width: 38px;
+    border-radius: 500px;
+    font-size: 20px;
+    border: none;
+    background: var(--main-color);
+    color: white;
+}
+
+.button:hover {
+    transform: scale(108%);
+    background: var(--main-color-hover);
+}
+
+.button:active {
+    transform: scale(94%);
+    background: var(--main-color-active);
+}

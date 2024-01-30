@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import IFood from '../../models/IFood'
 import style from './Food.module.css'
+import EditButton from '../../ui/buttons/MiniButton'
 
 type Props = {
     food : IFood
@@ -9,8 +10,12 @@ type Props = {
 const Food:FC<Props> = ({food}) => {
     return (
         <div className={style.food}>
-            <div className={style.name}>
-                <span>{food.name}</span>
+            <div className={style.nameWrapper}>
+                <div className={style.name}>{food.name}</div>
+                <div className={style.editMenuWrapper}>
+                    <EditButton symbol='↔'/>
+                    <EditButton symbol='✎'/>
+                </div>
             </div>
             <div className={style.content}>
                 <div className={style.detailsWrapper}>
