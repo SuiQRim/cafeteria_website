@@ -5,11 +5,11 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     symbol : string
 }
 
-const EditButton:FC<Props> = (props) => {
+const MiniButton:FC<Props> = (props) => {
     return (
       <button className={style.button} {...props}>{props.symbol}</button>
     )
   }
   
-  export default EditButton;
+  export default MiniButton;
 

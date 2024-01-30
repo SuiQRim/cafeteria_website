@@ -1,21 +1,26 @@
 import React, { FC } from 'react'
 import IFood from '../../models/IFood'
 import style from './Food.module.css'
-import EditButton from '../../ui/buttons/MiniButton'
+import MiniButton from '../../ui/buttons/MiniButton'
 
-type Props = {
-    food : IFood
+interface Props  {
+    food : IFood,
+    edit : () => void
 }
 
-const Food:FC<Props> = ({food}) => {
+const Food:FC<Props> = ({food, edit}) => {
+
+    const editFood = () => {
+        edit();
+    }
+
     return (
         <div className={style.food}>
             <div className={style.nameWrapper}>
                 <div className={style.name}>{food.name}</div>
                 <div className={style.editMenuWrapper}>
-                    <EditButton symbol='↔'/>
-                    <EditButton symbol='✎'/>
-                </div>
+                    <MiniButton symbol='✎' onClick={editFood}/>
+                </div>  
             </div>
             <div className={style.content}>
                 <div className={style.detailsWrapper}>
