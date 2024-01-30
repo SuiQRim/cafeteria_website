@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Header from './components/header/Header';
 import IUser from './models/IUser';
 import Api from './api/Api';
+import FoodCatalogPage from './pages/foodCatalogPage/FoodCatalogPage';
 
 function App() {
 
@@ -13,24 +14,17 @@ function App() {
         login : 'Admin',
         password : 'Admin'
     }
+
     useEffect(() => {
         Api.post('api/Users/login', acc).then((response) => {
             setIsLogin(true);   
         })
-
     })
 
-    const getUsers = () => {
-        Api.get('api/Users/collection?start=0&batchSize=1').then((response) => { 
-            console.log(response.data)
-        })
-    }
 
     return (
         <div className="App">
-            {isLogin && <Header/>}
-            <Login/>
-            <button onClick={getUsers}>Юзеры</button>
+            <FoodCatalogPage/>
         </div>
     );
 }

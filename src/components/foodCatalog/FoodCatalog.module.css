@@ -1,0 +1,13 @@
+.catalog {
+
+}
+
+.name {
+ font-size: 28px;
+}
+
+.foods {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
