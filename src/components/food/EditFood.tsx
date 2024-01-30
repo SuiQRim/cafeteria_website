@@ -42,55 +42,43 @@ const EditFood:FC<Props> = ({food, save}) => {
         })
     }
 
+    const readNumbersOnly = (event :React.KeyboardEvent<HTMLInputElement>) => {
+        if (!/[0-9]/.test(event.key)) {
+            event.preventDefault();
+        }
+    }
     return (
-        <div className={style.food}>
+        <div className={style.editFood}>
             <div className={style.nameWrapper}>
-            
-
+        
                 <div className={style.name}>
-                    <input 
+                    <input
+                        className={style.input}
                         value={editableFood.name} 
                         onChange={editName}/>
                 </div>
-
                 <div className={style.editMenuWrapper}>
                     <MiniButton symbol='s' onClick={() => save(editableFood)}/>
                 </div>
-                
-
             </div>
             <div className={style.content}>
                 <div className={style.detailsWrapper}>
-
                     <div>
-                        <input 
-                            onKeyPress={(event) => {
-                                if (!/[0-9]/.test(event.key)) {
-                                event.preventDefault();
-                                }
-                            }}
+                        <div className={style.detailLabel}>Ккал (100 гр)</div>
+                        <input className={style.input}
+                            onKeyPress={readNumbersOnly}
                             value={editableFood.kcal === 0 ? '' : editableFood.kcal} 
                             onChange={editkcal}/>
-                    </div>
-                
+                    </div>          
                 </div>
 
-                 <div className={style.price}>
-
-                    <div>
-                        <input 
-                            onKeyPress={(event) => {
-                                if (!/[0-9]/.test(event.key)) {
-                                event.preventDefault();
-                                }
-                            }}
-                            value={editableFood.price === 0 ? '' : editableFood.price} 
-                            onChange={editPrice}/>
-                    </div>
-                
+                <div className={style.priceWrapper}> 
+                    <div className={style.detailLabel}>Цена</div>
+                    <input className={style.input}
+                        onKeyPress={readNumbersOnly}
+                        value={editableFood.price === 0 ? '' : editableFood.price} 
+                        onChange={editPrice}/>                
                 </div>
-            
-
             </div>
         </div>
     )

@@ -1,3 +1,4 @@
+.editFood,
 .food {
     padding: 20px 40px;
     background-color: var(--blackout-color);
@@ -6,6 +7,7 @@
     flex-direction: column;
     width: 520px
 }
+
 
 .nameWrapper {
     display: grid;
@@ -16,9 +18,35 @@
     color: var(--main-color);
 }
 
+
 .name {
     display: flex;
     align-self: flex-end;
+}
+
+.input {    
+    outline: none;
+    transition: 0.25s;
+    background: none;
+    border: solid 2px var(--main-color);
+    border-width: 0px 0px 2px 0px;
+}
+
+.input:focus {
+    border: none;
+    border: solid  var(--main-color);
+    background: var(--blackout-color);
+    border-width: 0px 0px 2px 0px;
+}
+
+.name .input {
+    width: 100%;
+    font-size: 28px;
+}
+
+.priceWrapper .input {
+    font-size: 28px;
+    width: 100px;
 }
 
 .editMenuWrapper {
@@ -26,12 +54,17 @@
     gap: 10px;
 }
 
-.editMenuWrapper button {
+.editMenuWrapper .button {
     height: 30px;
     width: 30px;
     font-size: 16px;
 }
 
+
+.kcal {
+    font-size: 16px;
+    font-weight: bolder;
+}
 .content {
     height: 80px;
     display: grid;
@@ -44,15 +77,24 @@
     gap: 4px 40px;
     flex-wrap: wrap;
     align-self: flex-end;
-    padding: 6px 0px;
     font-size: 14px;
 }
 
-.price {
-    display: flex;  
+.priceWrapper {
+    display: flex; 
+    flex-direction: column;
     justify-content: flex-end;
-    font-weight: bold;
     align-self: flex-end;
+}
+
+.price {
+    font-weight: bold;
     color: rgb(255, 110, 52);
     font-size: 36px;
 }
+
+.detailLabel {
+    font-size: 14px;
+    color: gray;
+}
+

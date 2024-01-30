@@ -25,7 +25,6 @@ function App() {
             <div className='AppWrapper'>
                 <FoodCatalogPage/>
             </div>
-            
         </div>
     );
 }
