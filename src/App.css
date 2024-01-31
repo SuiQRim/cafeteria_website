@@ -29,6 +29,15 @@
     justify-content: center;
 }
 
+.input {
+    background: var(--blackout-color);
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 18px;
+}
+
+
 button {
     transition: 0.25s;
     cursor: pointer;
@@ -49,4 +58,9 @@ button:active {
 
 .delete {
     background: rgb(230, 72, 72);
+}
+
+.error {
+    color: rgb(230, 72, 72);
+    font-weight: bolder;
 }
