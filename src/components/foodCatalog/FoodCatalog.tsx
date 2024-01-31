@@ -43,15 +43,15 @@ const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, edi
             <div className={style.foodsWrapper}>
                 <div className={style.foods}>
                     {catalog.foods.map((item) => item.id === editableFoodId ? 
-                        <div className={style.foodWrapper}>
-                            <EditFood save={saveFood} key={item.id} food={item}/>
+                        <div key={item.id} className={style.foodWrapper}>
+                            <EditFood save={saveFood}food={item}/>
                             <div className={style.foodMenu}>
                                 <button className='delete' onClick={() => deleteFood(item.id)}>Delete</button>
                                 <button onClick={cancelFoodEdit}>Cancel</button>
                             </div>
                         </div> : 
-                        <div className={style.foodWrapper}>
-                            <Food edit={() => editFood(item.id)} key={item.id} food={item}/>
+                        <div key={item.id} className={style.foodWrapper}>
+                            <Food edit={() => editFood(item.id)} food={item}/>
                         </div>
                         )
                     }
