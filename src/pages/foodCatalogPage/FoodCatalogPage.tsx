@@ -42,6 +42,11 @@ const FoodCatalogPage:FC = () => {
         Api.delete(`api/Foods/${id}`).then(() => getFoodCatalogs())
     }
 
+    const deleteCatalog = (id : number) => {
+        setEditableCatalogId(nonEditValue);
+        Api.delete(`api/FoodCatalogs/${id}`).then(() => getFoodCatalogs())
+    }
+
 
     const addFood = (food: IFood, catalogId : number) => {
         Api.post(`api/Foods/add`,
@@ -94,7 +99,7 @@ const FoodCatalogPage:FC = () => {
 
            
             {editableCatalogId === nonEditValue ||
-            <EditCatalog save={saveCatalog} cancel={() => setEditableCatalogId(nonEditValue)} catalog={foodCatalogs && foodCatalogs.find(c => c.id === editableCatalogId)}/>}
+            <EditCatalog deleteCatalog={deleteCatalog} save={saveCatalog} cancel={() => setEditableCatalogId(nonEditValue)} catalog={foodCatalogs && foodCatalogs.find(c => c.id === editableCatalogId)}/>}
             
         </div>
     );

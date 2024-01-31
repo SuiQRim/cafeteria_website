@@ -29,9 +29,9 @@
     justify-content: flex-end;
 }
 
-.save {
-    display: flex;
-    justify-content: flex-end;
+.menu {
+    display: grid;
+    grid-template-columns: 1fr auto;
 }
 .input {
     background: var(--blackout-color);
@@ -39,4 +39,14 @@
     border-radius: 8px;
     padding: 6px 12px;
     font-size: 18px;
+}
+
+.delete {
+    width: fit-content;
+    background: rgb(230, 72, 72);
+}
+
+
+.save {
+
 }

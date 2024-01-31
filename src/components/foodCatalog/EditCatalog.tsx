@@ -6,10 +6,11 @@ import MiniButton from '../../ui/buttons/MiniButton'
 interface Props {
     catalog? :IFoodCatalog,
     save: (catalog:IFoodCatalog) => void,
+    deleteCatalog: (id: number) => void,
     cancel: () => void
 }
 
-const EditCatalog:FC<Props> = ({catalog, cancel, save}) => {
+const EditCatalog:FC<Props> = ({catalog, cancel, save, deleteCatalog}) => {
     if(catalog == null)
     {
         catalog = {
@@ -48,8 +49,9 @@ const EditCatalog:FC<Props> = ({catalog, cancel, save}) => {
                         <input className={style.input} placeholder='Название'
                             value={editableCatalog.name} onChange={editName}/>
                     </div>
-                    <div className={style.save}>
-                        <button onClick={addOrUpdate}>Сохранить</button>
+                    <div className={style.menu}>
+                        {editableCatalog.id !== 0 && <button className={style.delete} onClick={() => deleteCatalog(editableCatalog.id)}>D</button>}
+                        <button className={style.save} onClick={addOrUpdate}>Сохранить</button>                 
                     </div>
                 </div>
                
