@@ -25,7 +25,6 @@
 }
 .foods {
     padding: 20px;
-    width: 520px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -38,6 +37,19 @@
 
 .edit {
     align-self: center;
+}
+
+.foodWrapper {
+    display: grid;
+    grid-template-columns: 520px 60px;
+    align-items: center;
+    gap: 30px;
+}
+
+.foodMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .addFood {

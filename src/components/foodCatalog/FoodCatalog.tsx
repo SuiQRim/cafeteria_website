@@ -12,13 +12,15 @@ type Props = {
     editableFoodId : number,
     isEdit?: boolean,
     editFood: (id: number) => void
+    deleteFood: (id: number) => void
     saveFood: (food: IFood) => void
     saveCatalog: (catalog: IFoodCatalog) => void
     editCatalog: () => void,
     addFood: (food :IFood, catalogId: number) => void,
+    cancelEdit: () => void
 }
 
-const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isEdit, saveCatalog, editCatalog, addFood}) => {
+const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isEdit, saveCatalog, editCatalog, addFood, deleteFood, cancelEdit}) => {
     
     const [isFoodAdd, setIsFoodAdd] = useState<boolean>();
     const [editableCatalog, setEditableCatalog] = useState<IFoodCatalog>(catalog);
@@ -38,7 +40,7 @@ const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isE
     }
 
     return (
-        <div className={style.catalog}>
+        <div>
             <div>
                 <div className={style.nameWrapper}>
                 {isEdit ? 
@@ -62,20 +64,38 @@ const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isE
             <div className={style.foodsWrapper}>
                 <div className={style.foods}>
                     {catalog.foods.map((item) => item.id === editableFoodId ? 
-                        <EditFood save={saveFood} key={item.id} food={item}/> : 
-                        <Food edit={() => editFood(item.id)} key={item.id} food={item}/>
+                        <div className={style.foodWrapper}>
+                            <EditFood save={saveFood} key={item.id} food={item}/>
+                            <div className={style.foodMenu}>
+                                <MiniButton symbol='D' onClick={() => deleteFood(item.id)}/>
+                                <MiniButton symbol='C' onClick={() => cancelEdit()}/>
+                            </div>
+                        </div> : 
+                        <div className={style.foodWrapper}>
+                            <Food edit={() => editFood(item.id)} key={item.id} food={item}/>
+                        </div>
                         )
                     }
+                    
                     {isFoodAdd ?
-                        <div>
-                            <EditFood save={createFood}/>
+                        <div className={style.foodWrapper}>
+                            <div>
+                                <EditFood save={createFood}/>
+                            </div>
+                            <div className={style.foodMenu}>
+                                <MiniButton symbol='C' onClick={() => setIsFoodAdd(false)}/>
+                            </div>
                         </div>
                         :
-                        <div className={style.addFood}>
-                            <div className={style.text}>Добавить</div>
-                            <MiniButton symbol='+' onClick={() => setIsFoodAdd(true)}/>
+                        <div className={style.foodWrapper}>
+                            <div className={style.addFood}>
+                                <div className={style.text}>Добавить</div>
+                                <MiniButton symbol='+' onClick={() => setIsFoodAdd(true)}/>
+                            </div>
                         </div>
                     }
+
+                  
                 </div>
             </div>
         </div>

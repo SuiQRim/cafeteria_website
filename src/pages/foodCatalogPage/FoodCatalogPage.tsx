@@ -23,13 +23,6 @@ const FoodCatalogPage:FC = () => {
         getFoodCatalogs()
     },[])
 
-    const editFood = (id: number) => {
-        setEditableFoodId(id)
-    }
-
-    const editCatalog = (id: number) => {
-        setEditableCatalogId(id)
-    }
 
     const saveFood = (food: IFood) => {
         setEditableFoodId(nonEditValue);
@@ -39,6 +32,12 @@ const FoodCatalogPage:FC = () => {
             }).then(() => getFoodCatalogs())
         
     }
+
+    const deleteFood = (id : number) => {
+        setEditableFoodId(nonEditValue);
+        Api.delete(`api/Foods/${id}`).then(() => getFoodCatalogs())
+    }
+
 
     const addFood = (food: IFood, catalogId : number) => {
         Api.post(`api/Foods/add`,
@@ -63,10 +62,14 @@ const FoodCatalogPage:FC = () => {
             <div style={{display : 'flex', flexDirection : 'column', gap:'20px', width: '720px'}}>
                 {foodCatalogs && foodCatalogs.map((item) => 
                     <FoodCatalog key={item.id} catalog={item}
-                        editCatalog={() => editCatalog(item.id)} saveCatalog={saveCatalog} 
-                        editFood={editFood} saveFood={saveFood} 
+                        editCatalog={() => setEditableCatalogId(item.id)}
+                        saveCatalog={saveCatalog} 
+                        editFood={(id: number) => setEditableFoodId(id)} 
+                        saveFood={saveFood} 
                         editableFoodId={editableFoodId} isEdit={editableCatalogId === item.id}
-                        addFood={addFood}/>
+                        addFood={addFood}
+                        deleteFood={deleteFood}
+                        cancelEdit={() => setEditableFoodId(nonEditValue)}/>
                     )}
 
             </div>
