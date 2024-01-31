@@ -14,12 +14,15 @@ type Props = {
     editFood: (id: number) => void
     saveFood: (food: IFood) => void
     saveCatalog: (catalog: IFoodCatalog) => void
-    editCatalog: () => void
+    editCatalog: () => void,
+    addFood: (food :IFood, catalogId: number) => void,
 }
 
-const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isEdit, saveCatalog, editCatalog}) => {
-
+const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isEdit, saveCatalog, editCatalog, addFood}) => {
+    
+    const [isFoodAdd, setIsFoodAdd] = useState<boolean>();
     const [editableCatalog, setEditableCatalog] = useState<IFoodCatalog>(catalog);
+
     const editName = (e:React.ChangeEvent<HTMLInputElement>) => {
         setEditableCatalog(prevState => {
             return {
@@ -29,10 +32,14 @@ const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isE
         })
     }
 
+    const createFood = (food: IFood) => {
+       addFood(food, catalog.id)
+       setIsFoodAdd(false);
+    }
+
     return (
         <div className={style.catalog}>
             <div>
-            
                 <div className={style.nameWrapper}>
                 {isEdit ? 
                     <Input className={style.input}
@@ -51,17 +58,23 @@ const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isE
                     </div> 
                 }
                 </div>
-                
-                
             </div>
             <div className={style.foodsWrapper}>
-
-           
                 <div className={style.foods}>
                     {catalog.foods.map((item) => item.id === editableFoodId ? 
                         <EditFood save={saveFood} key={item.id} food={item}/> : 
                         <Food edit={() => editFood(item.id)} key={item.id} food={item}/>
                         )
+                    }
+                    {isFoodAdd ?
+                        <div>
+                            <EditFood save={createFood}/>
+                        </div>
+                        :
+                        <div className={style.addFood}>
+                            <div className={style.text}>Добавить</div>
+                            <MiniButton symbol='+' onClick={() => setIsFoodAdd(true)}/>
+                        </div>
                     }
                 </div>
             </div>

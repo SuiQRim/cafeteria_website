@@ -5,13 +5,14 @@ import MiniButton from '../../ui/buttons/MiniButton'
 import Input from '../../ui/inputs/Input'
 
 type Props = {
-    food : IFood,
+    food? : IFood,
     save: (food :IFood) => void
 }
 
 const EditFood:FC<Props> = ({food, save}) => {
 
-    const [editableFood, setEditableFood] = useState<IFood>(food);
+    
+    const [editableFood, setEditableFood] = useState<IFood>(food ?? {name : '', price : 0, id : 0, kcal : 0, catalogId : 0});
 
     const editName = (e:React.ChangeEvent<HTMLInputElement>) => {
 
@@ -54,6 +55,7 @@ const EditFood:FC<Props> = ({food, save}) => {
         
                 <div className={style.name}>
                     <Input
+                        placeholder='Название блюда'
                         className={style.input}
                         value={editableFood.name} 
                         onChange={editName}/>

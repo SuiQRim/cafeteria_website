@@ -35,10 +35,16 @@ const FoodCatalogPage:FC = () => {
         setEditableFoodId(nonEditValue);
         Api.put(`api/Foods/edit/${food.id}`,
             {
-                name : food.name,
-                kcal : food.kcal,
-                price : food.price,
-                catalogId: food.catalogId
+                ...food
+            }).then(() => getFoodCatalogs())
+        
+    }
+
+    const addFood = (food: IFood, catalogId : number) => {
+        Api.post(`api/Foods/add`,
+            {
+                ...food,
+                catalogId: catalogId
             }).then(() => getFoodCatalogs())
         
     }
@@ -59,7 +65,8 @@ const FoodCatalogPage:FC = () => {
                     <FoodCatalog key={item.id} catalog={item}
                         editCatalog={() => editCatalog(item.id)} saveCatalog={saveCatalog} 
                         editFood={editFood} saveFood={saveFood} 
-                        editableFoodId={editableFoodId} isEdit={editableCatalogId === item.id}/>
+                        editableFoodId={editableFoodId} isEdit={editableCatalogId === item.id}
+                        addFood={addFood}/>
                     )}
 
             </div>

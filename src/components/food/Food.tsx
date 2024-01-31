@@ -19,7 +19,7 @@ const Food:FC<Props> = ({food, edit}) => {
             <div className={style.nameWrapper}>
                 <div className={style.name}>{food.name}</div>
                 <div className={style.editMenuWrapper}>
-                    <MiniButton className={style.button} symbol='✎' onClick={editFood}/>
+                    <MiniButton symbol='✎' onClick={editFood}/>
                 </div>  
             </div>
             <div className={style.content}>
