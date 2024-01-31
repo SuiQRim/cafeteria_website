@@ -47,7 +47,7 @@
 
 .foodWrapper {
     display: grid;
-    grid-template-columns: 520px 60px;
+    grid-template-columns: 520px 120px;
     align-items: center;
     gap: 30px;
 }
@@ -73,7 +73,7 @@
     font-size: 24px;
 }
 
-.foods button {
+.button {
     font-size: 16px;
     height: 30px;
     width: 30px;

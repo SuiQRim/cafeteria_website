@@ -3,7 +3,6 @@ import Api from "../../api/Api";
 import IFoodCatalog from "../../models/IFoodCatalog";
 import FoodCatalog from "../../components/foodCatalog/FoodCatalog";
 import IFood from "../../models/IFood";
-import MiniButton from "../../ui/buttons/MiniButton";
 import style from './FoodCatalogPage.module.css'
 import EditCatalog from "../../components/foodCatalog/EditCatalog";
 
@@ -91,7 +90,7 @@ const FoodCatalogPage:FC = () => {
                 )}
 
                 <div className={style.add}>
-                    <MiniButton symbol='+' onClick={() => setEditableCatalogId(addValue)}/>
+                    <button onClick={() => setEditableCatalogId(addValue)}>Add</button>
                     <div className={style.text}>Добавить</div>
                 </div>
                 

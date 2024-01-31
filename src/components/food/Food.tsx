@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import IFood from '../../models/IFood'
 import style from './Food.module.css'
-import MiniButton from '../../ui/buttons/MiniButton'
 
 interface Props  {
     food : IFood,
@@ -19,7 +18,7 @@ const Food:FC<Props> = ({food, edit}) => {
             <div className={style.nameWrapper}>
                 <div className={style.name}>{food.name}</div>
                 <div className={style.editMenuWrapper}>
-                    <MiniButton symbol='✎' onClick={editFood}/>
+                    <button onClick={editFood}>✎</button>
                 </div>  
             </div>
             <div className={style.content}>

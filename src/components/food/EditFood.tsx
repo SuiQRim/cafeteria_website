@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react'
 import IFood from '../../models/IFood'
 import style from './Food.module.css'
-import MiniButton from '../../ui/buttons/MiniButton'
 import Input from '../../ui/inputs/Input'
 
 type Props = {
@@ -61,7 +60,7 @@ const EditFood:FC<Props> = ({food, save}) => {
                         onChange={editName}/>
                 </div>
                 <div className={style.editMenuWrapper}>
-                    <MiniButton symbol='s' onClick={() => save(editableFood)}/>
+                    <button onClick={() => save(editableFood)}>Save</button>
                 </div>
             </div>
             <div className={style.content}>

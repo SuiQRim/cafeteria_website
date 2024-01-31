@@ -46,3 +46,7 @@ button:hover {
 button:active {
     background-color: var(--main-color-active);
 }
+
+.delete {
+    background: rgb(230, 72, 72);
+}
