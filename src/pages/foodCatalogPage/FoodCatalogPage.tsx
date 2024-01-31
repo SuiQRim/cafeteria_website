@@ -3,13 +3,17 @@ import Api from "../../api/Api";
 import IFoodCatalog from "../../models/IFoodCatalog";
 import FoodCatalog from "../../components/foodCatalog/FoodCatalog";
 import IFood from "../../models/IFood";
+import MiniButton from "../../ui/buttons/MiniButton";
+import style from './FoodCatalogPage.module.css'
+import EditCatalog from "../../components/foodCatalog/EditCatalog";
 
 
 const FoodCatalogPage:FC = () => {
 
     const [foodCatalogs, setFoodCatalogs] = useState<IFoodCatalog[]>();
     
-    const nonEditValue = 0;
+    const nonEditValue = -1;
+    const addValue = 0;
     const [editableFoodId, setEditableFoodId] = useState<number>(nonEditValue)
     const [editableCatalogId, setEditableCatalogId] = useState<number>(nonEditValue)
 
@@ -49,8 +53,18 @@ const FoodCatalogPage:FC = () => {
     }
 
     const saveCatalog = (catalog: IFoodCatalog) => {
+        let id: number = catalog.id;
         setEditableCatalogId(nonEditValue);
-        Api.put(`api/FoodCatalogs/${catalog.id}`,
+
+        if(id === addValue) {
+            Api.post(`api/FoodCatalogs/add`,
+                {
+                    name : catalog.name
+                }).then(() => getFoodCatalogs())
+            return;
+        }
+
+        Api.put(`api/FoodCatalogs/${id}`,
             {
                 name : catalog.name
             }).then(() => getFoodCatalogs())
@@ -59,21 +73,29 @@ const FoodCatalogPage:FC = () => {
 
     return (
         <div>
-            <div style={{display : 'flex', flexDirection : 'column', gap:'20px', width: '720px'}}>
+            <div className={style.catalogs}>
                 {foodCatalogs && foodCatalogs.map((item) => 
                     <FoodCatalog key={item.id} catalog={item}
                         editCatalog={() => setEditableCatalogId(item.id)}
-                        saveCatalog={saveCatalog} 
                         editFood={(id: number) => setEditableFoodId(id)} 
                         saveFood={saveFood} 
-                        editableFoodId={editableFoodId} isEdit={editableCatalogId === item.id}
+                        editableFoodId={editableFoodId} 
                         addFood={addFood}
                         deleteFood={deleteFood}
-                        cancelFoodEdit={() => setEditableFoodId(nonEditValue)}
-                        cancelCatalogEdit={() => setEditableCatalogId(nonEditValue)}/>
-                    )}
+                        cancelFoodEdit={() => setEditableFoodId(nonEditValue)}/>
+                )}
 
+                <div className={style.add}>
+                    <MiniButton symbol='+' onClick={() => setEditableCatalogId(addValue)}/>
+                    <div className={style.text}>Добавить</div>
+                </div>
+                
             </div>
+
+           
+            {editableCatalogId === nonEditValue ||
+            <EditCatalog save={saveCatalog} cancel={() => setEditableCatalogId(nonEditValue)} catalog={foodCatalogs && foodCatalogs.find(c => c.id === editableCatalogId)}/>}
+            
         </div>
     );
 }

@@ -6,6 +6,7 @@
 
 
 :root {
+    --background-color: rgb(255, 249, 244);
     --main-color: #db9b4d;
     --main-color-hover: #ecb168;
     --main-color-active: #c2873f;
@@ -26,4 +27,22 @@
     width: 74%;
     display: flex;
     justify-content: center;
+}
+
+button {
+    transition: 0.25s;
+    cursor: pointer;
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+button:hover {
+    background-color: var(--main-color-hover);
+}
+button:active {
+    background-color: var(--main-color-active);
 }

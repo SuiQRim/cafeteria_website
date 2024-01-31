@@ -8,10 +8,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const MiniButton:FC<Props> = (props) => {
     return (
-
-            <button {...props} className={style.button + " " + props.className}>{props.symbol}</button> 
-        
-      
+        <button {...props} className={style.button + " " + props.className}>{props.symbol}</button> 
     )
   }
   

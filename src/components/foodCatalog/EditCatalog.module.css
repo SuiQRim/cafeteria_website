@@ -1,0 +1,42 @@
+.wrapper {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.block {
+    background: var(--background-color);
+    border-radius: 16px;
+}
+
+.catalog {
+    padding: 40px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cancel {
+    margin: 20px 20px 0px 0px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.save {
+    display: flex;
+    justify-content: flex-end;
+}
+.input {
+    background: var(--blackout-color);
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 18px;
+}
