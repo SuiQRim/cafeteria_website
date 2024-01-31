@@ -7,7 +7,7 @@ import EditFood from '../food/EditFood'
 import IFood from '../../models/IFood'
 import Input from '../../ui/inputs/Input'
 
-type Props = {
+interface Props {
     catalog : IFoodCatalog,
     editableFoodId : number,
     isEdit?: boolean,
@@ -17,10 +17,11 @@ type Props = {
     saveCatalog: (catalog: IFoodCatalog) => void
     editCatalog: () => void,
     addFood: (food :IFood, catalogId: number) => void,
-    cancelEdit: () => void
+    cancelFoodEdit: () => void,
+    cancelCatalogEdit: () => void
 }
 
-const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isEdit, saveCatalog, editCatalog, addFood, deleteFood, cancelEdit}) => {
+const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isEdit, saveCatalog, editCatalog, addFood, deleteFood, cancelFoodEdit, cancelCatalogEdit}) => {
     
     const [isFoodAdd, setIsFoodAdd] = useState<boolean>();
     const [editableCatalog, setEditableCatalog] = useState<IFoodCatalog>(catalog);
@@ -42,24 +43,26 @@ const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isE
     return (
         <div>
             <div>
+            {isEdit ? 
                 <div className={style.nameWrapper}>
-                {isEdit ? 
                     <Input className={style.input}
                         onChange={editName}
-                        value={editableCatalog.name}/>:
-                    <div className={style.name}>
-                        {catalog.name}
-                    </div>
-                }
-                {isEdit ?
+                        value={editableCatalog.name}/>
                     <div className={style.edit}>
                         <MiniButton symbol='s' onClick={() => saveCatalog(editableCatalog)}/>
-                    </div> :
+                        <MiniButton symbol='c' onClick={cancelCatalogEdit}/>
+                    </div>
+                </div> :
+                <div className={style.editNameWrapper}>
                     <div className={style.edit}>
                         <MiniButton symbol='✎' onClick={editCatalog}/>
                     </div> 
-                }
+                    <div className={style.name}>
+                        {catalog.name}
+                    </div>
                 </div>
+            }
+            
             </div>
             <div className={style.foodsWrapper}>
                 <div className={style.foods}>
@@ -68,7 +71,7 @@ const FoodCatalog:FC<Props> = ({catalog, editableFoodId, saveFood, editFood, isE
                             <EditFood save={saveFood} key={item.id} food={item}/>
                             <div className={style.foodMenu}>
                                 <MiniButton symbol='D' onClick={() => deleteFood(item.id)}/>
-                                <MiniButton symbol='C' onClick={() => cancelEdit()}/>
+                                <MiniButton symbol='C' onClick={cancelFoodEdit}/>
                             </div>
                         </div> : 
                         <div className={style.foodWrapper}>

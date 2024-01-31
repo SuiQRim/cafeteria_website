@@ -69,7 +69,8 @@ const FoodCatalogPage:FC = () => {
                         editableFoodId={editableFoodId} isEdit={editableCatalogId === item.id}
                         addFood={addFood}
                         deleteFood={deleteFood}
-                        cancelEdit={() => setEditableFoodId(nonEditValue)}/>
+                        cancelFoodEdit={() => setEditableFoodId(nonEditValue)}
+                        cancelCatalogEdit={() => setEditableCatalogId(nonEditValue)}/>
                     )}
 
             </div>
